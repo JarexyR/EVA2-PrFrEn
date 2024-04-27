@@ -1,0 +1,1270 @@
+<!DOCTYPE html>
+
+<!-- 
+    README 
+Antes que nada, quiero disculparme por la entrega tardía.
+En segundo lugar, considero que es necesario dar una explicación del caos que se encuentra abajo.
+El código a continuación es producto de una serie de desiciones desafortunadas (por no decir que me compliqué la vida tontamente).
+Esta abominación fue creada en base al código de la página original, ya actualizada, y varios recursos rescatados desde la wayback machine, así como arreglos de autoría propia y pequeños fragmentos de código extraidos de tanto de plantillas como de otros sitios de internet
+
+Para lograr que el código cumpla (al menos de forma parcial) con su propósito, tuve que ir añadiendo documentos que, al parecer y en varios casos por razones que no entiendo, eran necesarios para su funcionamiento
+
+Al menos pude aprender muchas cosas, como el uso de la consola de la herramienta de desarrollador del navegador y la busqueda de frangmentos de código a gracias a visual studio code. Aún así, espero que no se vuelva a repetir la situación, ya estuve mucho tiempo soñando con código
+
+-->
+
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Fullerton | Alimento para mascotas</title>
+    <link rel="stylesheet" href="./css/style.css"> 
+    <link rel="stylesheet" href="./css/styles.css"><!--descargué varios documentos css para lograr un estilo similar, pero me alejé mucho del formato de entrega original, la verdad-->
+    <link rel="stylesheet" href="./css/woocommerce-layout.css"><!--woocomerce me dio muchos problemas al principio cuando quería hacer un frankenstein sin entender de donde vienen los recursos-->
+    <link rel="stylesheet" href="./css/font-awesome.css">
+    <link rel="stylesheet" href="./css/all.min.css"><!--intenté averiguar que era in .min.css y... bueno... no tuve éxito -->
+    <link rel="stylesheet" href="./css/tiny-slider.css">
+    <link rel="stylesheet" href="./css/rs6.css">
+    <link rel="stylesheet" id="cnss_font_awesome_css-css" href="./resources/font_awesome/all.min.css" type="text/css"
+        media="all">
+    <link rel="stylesheet" id="cnss_font_awesome_v4_shims-css" href="./resources/font_awesome/v4-shims.min.css"
+        type="text/css" media="all">
+    <script src="https://kit.fontawesome.com/6bdae56deb.js" crossorigin="anonymous"></script> <!-- el kit que me creé-->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400%2C700&amp;display=swap" rel="stylesheet"
+        property="stylesheet" media="all" type="text/css">
+    <link href="https://fonts.googleapis.com/css2?family=Paytone+One&amp;family=Roboto:wght@400;700&amp;display=swap"
+        rel="stylesheet">
+    <script type="text/javascript" src="./resources/rbtools.min.js.descarga" async="" id="tp-tools-js"></script>
+    <script type="text/javascript" src="./resources/rs6.min.js.descarga" async="" id="revmin-js"></script> <!--también tuve que poner conecciones a documentos javascript porque, por razones que aún no comprendo del todo, su ausencia hacía que no se implementara correctamente el css-->
+    <style type="text/css" id="wp-custom-css">
+        .car-videos-wrap {
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+        }
+
+        #billing_lat_field {
+            display: none;
+        }
+
+        #pum_popup_title_958631 {
+            font-size: 14px;
+        }
+
+        #popmake-958631 {
+            background: white;
+        }
+
+        .pum-content {
+            background: white;
+        }
+
+        .body {
+            overflow: hidden;
+        }
+
+        .woocommerce span.onsale {
+            min-height: 4px !important;
+            min-width: 4px !important;
+            padding: 0.202em;
+            font-size: 1em;
+            font-weight: 700;
+            position: absolute;
+            text-align: center;
+            line-height: 4 !important;
+            top: -0.5em;
+            left: -0.5em;
+            margin: 0;
+            border-radius: 100%;
+            background-color: #ffc72c !important;
+            color: #fff;
+            font-size: .857em;
+            z-index: 9;
+        }
+
+        @media screen and (max-width: 660px) {
+            .wpgs-lightbox-icon::before {
+                display: none;
+            }
+
+            .pwb-brands-col3 {
+                max-width: 100px;
+            }
+
+            .pwb-brands-cols-outer {
+                justify-content: center
+            }
+
+            #ima1 {
+                max-width: 250px;
+                padding-bottom: 20px;
+                padding-top: 20px;
+            }
+
+            .woocommerce div.product div.images img {
+                /* display: block; */
+                max-width: 180px;
+                margin-left: auto;
+                margin-right: auto;
+                display: block;
+                height: auto;
+                box-shadow: none;
+                overflow: hidden;
+            }
+        }
+
+        @media screen and (min-width: 600px) {
+            .woocommerce div.product div.images img {
+                /* display: block; */
+                max-width: 370px;
+                margin-left: auto;
+                margin-right: auto;
+                display: block;
+                height: auto;
+                box-shadow: none;
+                overflow: hidden;
+            }
+        }
+
+        .autocomplete-footer {
+            display: none;
+        }
+
+        #woocommerce-product-search-field-0 {
+            width: 100%;
+            max-width: 100%;
+            color: #313131;
+            padding: 6px;
+            line-height: 30px;
+            display: block;
+            font-size: 12px;
+            position: relative;
+            z-index: 2;
+            height: 100%;
+            margin: 0 !important;
+            border: 1px solid #d8d8d8;
+            outline: 0;
+        }
+
+        .woocommerce-product-search {
+            display: flex !important;
+            align-items: stretch;
+            height: 44px;
+            width: 300px !important;
+        }
+
+        header form button {
+            display: none;
+        }
+
+        @media screen and (max-width: 500px) {
+            .woocommerce-product-search {
+                display: flex !important;
+                align-items: stretch;
+                height: 44px;
+                width: 300px !important;
+                width: 100% !important;
+            }
+        }
+
+        .cwginstock-subscribe-form .panel-primary>.panel-heading {
+            color: #fff;
+            background-color: #ffc72c;
+            border-color: #ffc72c;
+        }
+
+        .cwginstock-subscribe-form .panel-primary {
+            border-color: #ffc72c;
+        }
+
+        .cwgstock_button {
+            width: 100%;
+            padding-top: 5px;
+            background: #ffc72c;
+            color: white;
+        }
+    </style>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="./resources/jquery.min.js.descarga" id="jquery-core-js"></script>
+    <script type="text/javascript" src="./resources/jquery-migrate.min.js.descarga" id="jquery-migrate-js"></script>
+    <script type="text/javascript" src="./resources/jquery.blockUI.min.js.descarga" id="jquery-blockui-js" defer="defer"
+        data-wp-strategy="defer"></script>
+    <script type="text/javascript" src="./resources/jquery.bind-first-0.2.3.min.js.descarga"
+        id="jquery-bind-first-js"></script>
+    <script>function setREVStartSize(e) {
+            //window.requestAnimationFrame(function() {
+            window.RSIW = window.RSIW === undefined ? window.innerWidth : window.RSIW;
+            window.RSIH = window.RSIH === undefined ? window.innerHeight : window.RSIH;
+            try {
+                var pw = document.getElementById(e.c).parentNode.offsetWidth,
+                    newh;
+                pw = pw === 0 || isNaN(pw) || (e.l == "fullwidth" || e.layout == "fullwidth") ? window.RSIW : pw;
+                e.tabw = e.tabw === undefined ? 0 : parseInt(e.tabw);
+                e.thumbw = e.thumbw === undefined ? 0 : parseInt(e.thumbw);
+                e.tabh = e.tabh === undefined ? 0 : parseInt(e.tabh);
+                e.thumbh = e.thumbh === undefined ? 0 : parseInt(e.thumbh);
+                e.tabhide = e.tabhide === undefined ? 0 : parseInt(e.tabhide);
+                e.thumbhide = e.thumbhide === undefined ? 0 : parseInt(e.thumbhide);
+                e.mh = e.mh === undefined || e.mh == "" || e.mh === "auto" ? 0 : parseInt(e.mh, 0);
+                if (e.layout === "fullscreen" || e.l === "fullscreen")
+                    newh = Math.max(e.mh, window.RSIH);
+                else {
+                    e.gw = Array.isArray(e.gw) ? e.gw : [e.gw];
+                    for (var i in e.rl) if (e.gw[i] === undefined || e.gw[i] === 0) e.gw[i] = e.gw[i - 1];
+                    e.gh = e.el === undefined || e.el === "" || (Array.isArray(e.el) && e.el.length == 0) ? e.gh : e.el;
+                    e.gh = Array.isArray(e.gh) ? e.gh : [e.gh];
+                    for (var i in e.rl) if (e.gh[i] === undefined || e.gh[i] === 0) e.gh[i] = e.gh[i - 1];
+
+                    var nl = new Array(e.rl.length),
+                        ix = 0,
+                        sl;
+                    e.tabw = e.tabhide >= pw ? 0 : e.tabw;
+                    e.thumbw = e.thumbhide >= pw ? 0 : e.thumbw;
+                    e.tabh = e.tabhide >= pw ? 0 : e.tabh;
+                    e.thumbh = e.thumbhide >= pw ? 0 : e.thumbh;
+                    for (var i in e.rl) nl[i] = e.rl[i] < window.RSIW ? 0 : e.rl[i];
+                    sl = nl[0];
+                    for (var i in nl) if (sl > nl[i] && nl[i] > 0) { sl = nl[i]; ix = i; }
+                    var m = pw > (e.gw[ix] + e.tabw + e.thumbw) ? 1 : (pw - (e.tabw + e.thumbw)) / (e.gw[ix]);
+                    newh = (e.gh[ix] * m) + (e.tabh + e.thumbh);
+                }
+                var el = document.getElementById(e.c);
+                if (el !== null && el) el.style.height = newh + "px";
+                el = document.getElementById(e.c + "_wrapper");
+                if (el !== null && el) {
+                    el.style.height = newh + "px";
+                    el.style.display = "block";
+                }
+            } catch (e) {
+                console.log("Failure at Presize of Slider:" + e)
+            }
+            //});
+        };</script>
+    <!-- necesito aprender como funciona Revolution Slider, me ocasionó muchos problemas el desconocer su funcionamiento-->
+
+</head>
+
+<body class="home page-template-default page page-id-9 wp-custom-logo theme-fullerton22 woocommerce-js rs-safari">
+    <header id="masthead" class="site-header navbar-static-top sticky-top" role="banner">
+        <nav class="nav"> 
+            <div class="nav-topbar"> <!--aquí inicia el nav, al principio me ocasionaba problemas porque no había hecho un reseteo de margen (ocupando un *{} con margen)-->
+                <div class="container">
+                    <div class="row">
+                        <div class="col-6">
+                            <p>
+                                <a href="#">Conoce las ciudades con Despacho Gratis</a>
+                                | <strong>DESPACHAMOS A TODO CHILE</strong>
+                            </p>
+                        </div>
+                        <div class="col-6 topbar-links text-right">
+                            <a href="#">Login</a><!--eliminé todos los links que redirigían a otras páginas, para no dejar el href vacío usé el #, lo cual hace que se redirija a sí mismo, al parecer. La idea salió de una plantilla boostrap-->
+                            <a href="#">Crear cuenta</a>
+                            <ul id="" class="cnss-social-icon" style="text-align: right;"></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="navbar col-12 wrap d-flex align-items-center">
+                        <a href=# class="custom-logo-link" rel="home" aria-current="page">
+                            <img width="300" height="78"
+                                src="./img/cropped-cropped-logo-fullerton-300x78-b-1.png" 
+                                class="custom-logo" alt="Fullerton" decoding="async" /> <!--esta imagen la saqué de una versión anterior de la página, mediante la wayback machine-->
+                        </a>
+                        <i id="abrirBuscador" class="fas fa-search"></i> <!-- todo lo que inicia con un fas fa es parte de font awesome-->
+                        <i id="abrirMenu" class="fas fa-bars"></i>
+
+                        <div class="menu-menu-principal-container">
+                            <ul id="menu-menu-principal" class="menu">
+                                <li id="menu-item-71447"
+                                    class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-has-children menu-item-71447">
+                                    <a href="#">Mascotas</a> <!-- las flechitas que aparecen al lado también, pero no se mencionan, lo cual creo que tiene que ver con el css de woocomerce-->
+                                    <ul class="sub-menu"> 
+                                        <li id="menu-item-71517"
+                                            class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-71517"><!-- me parece gracioso que la clase sea "menu-item-object-product_cat" en vez de "menu-item-object-product_pet", se nota que quien la creó era más de gatos-->
+                                            <a href="#">Todo para su perro</a>
+                                        </li>
+                                        <li id="menu-item-71518"
+                                            class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-71518"> 
+                                            <a href="#">Todo para su gato</a>
+                                        </li>
+                                        <li id="menu-item-71519"
+                                            class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-71519"> 
+                                            <a href="#">Otras mascotas</a>
+                                        </li>
+                                        <li id="menu-item-577190"
+                                            class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-577190">
+                                            <a href="#">Alimentos Húmedos</a>
+                                        </li>
+                                        <li id="menu-item-577191"
+                                            class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-577191">
+                                            <a href="#">Snacks</a>
+                                        </li>
+                                        <li id="menu-item-357714"
+                                            class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-357714">
+                                            <a href="#">Accesorios</a>
+                                        </li>
+                                        <li id="menu-item-583387"
+                                            class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-583387">
+                                            <a href="#">Cuidado y Salud</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li id="menu-item-71451"
+                                    class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-has-children menu-item-71451">
+                                    <a href="#">Cocina y panadería</a> <!-- me parece curioso que se mezcle el tema de la panadería aquí-->
+                                    <ul class="sub-menu">
+                                        <li id="menu-item-71561"
+                                            class="menu-item menu-item-type-taxonomy menu-item-object-product_tag menu-item-71561">
+                                            <a href="#">Harinas</a>
+                                        </li>
+                                        <li id="menu-item-71560"
+                                            class="menu-item menu-item-type-taxonomy menu-item-object-product_tag menu-item-71560">
+                                            <a href="#">Fruto Secos</a>
+                                        </li>
+                                        <li id="menu-item-71562"
+                                            class="menu-item menu-item-type-taxonomy menu-item-object-product_tag menu-item-71562">
+                                            <a href="#">Legumbres</a>
+                                        </li>
+                                        <li id="menu-item-71564"
+                                            class="menu-item menu-item-type-taxonomy menu-item-object-product_tag menu-item-71564">
+                                            <a href="#">Pastelería</a>
+                                        </li>
+                                        <li id="menu-item-71563"
+                                            class="menu-item menu-item-type-taxonomy menu-item-object-product_tag menu-item-71563">
+                                            <a href="https://www.youtube.com/watch?v=skiE0znlDyQ">Otros</a><!-- sin comentarios-->
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li id="menu-item-71480"
+                                    class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-71480">
+                                    <a href="#">Promociones</a>
+                                </li>
+                                <li id="menu-item-71481"
+                                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-71481">
+                                    <a href="#">Marcas</a>
+                                    <ul class="sub-menu">
+                                        <li id="menu-item-582097"
+                                            class="menu-item menu-item-type-taxonomy menu-item-object-pwb-brand menu-item-582097">
+                                            <a href="#">Bestpet</a>
+                                        </li>
+                                        <li id="menu-item-577185"
+                                            class="menu-item menu-item-type-taxonomy menu-item-object-pwb-brand menu-item-577185">
+                                            <a href="#">Birbo</a>
+                                        </li>
+                                        <li id="menu-item-577186"
+                                            class="menu-item menu-item-type-taxonomy menu-item-object-pwb-brand menu-item-577186">
+                                            <a href="#">Evolve</a>
+                                        </li>
+                                        <li id="menu-item-577187"
+                                            class="menu-item menu-item-type-taxonomy menu-item-object-pwb-brand menu-item-577187">
+                                            <a href="#">Monello</a>
+                                        </li>
+                                        <li id="menu-item-577188"
+                                            class="menu-item menu-item-type-taxonomy menu-item-object-pwb-brand menu-item-577188">
+                                            <a href="#">Monello Select</a>
+                                        </li>
+                                        <li id="menu-item-577189"
+                                            class="menu-item menu-item-type-taxonomy menu-item-object-pwb-brand menu-item-577189">
+                                            <a href="#">Natural Earth</a>
+                                        </li>
+                                        <li id="menu-item-964116"
+                                            class="menu-item menu-item-type-taxonomy menu-item-object-pwb-brand menu-item-964116">
+                                            <a href="#">Select</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <a class="cart-contents menu-item" href="#" title="Ver mi carrito de compras"> </a>
+
+                        <i id="abrirMenu" class="fas fa-bars"></i>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!-- #masthead -->
+    <div class="col-12 modal wrap">
+        <i id="cerrarModal" class="fas fa-times"></i>
+    </div>
+    <main class="main-content">
+        <!-- Aquí comienza el DOLOR
+        Este slider lo hice yo, creo que se nota la diferencia en la complejidad del código original y el mío. La razón por la cual no reutilicé el original es porque no logré que funcionara correctamente, muy posiblemente tenga que ver con elementos de revoltion slider que no se descargaron bien, o debido a problemas de css. He de comentar que no coloqué ni el texto sobrepuesto ni los botones, mas que nada porque en ese momento aún pensaba que podía terminar a tiempo, y no sabía cómo hacer desaparecer más de un elemento con el mismo efecto... posiblemente se pueda con un div-->
+        <div class="slider">
+            <div class="slider-wrapper">
+                <img src="./img/Capa-0.jpg" alt="Imagen 1" class="slide active">
+                <img src="./img/Capa-1.jpg" alt="Imagen 2" class="slide"> <!-- mi obra maestra de la publicidad-->
+                <img src="./img/Capa-2.jpg" alt="Imagen 3" class="slide">
+                <img src="./img/Capa-3.jpg" alt="Imagen 4" class="slide">
+            </div>
+        </div>
+        <div class="spacer"></div> <!-- este es un espaciador para que los elementos por debajo del slider no le pasen por encima-->
+
+        <div id="destacados" class="col-12 wrap">
+            <h2 class="col-12 title text-center">Productos Destacados</h2>
+            <div class="woocommerce columns-4">
+                <ul class="products columns-4" style="list-style-type: none">
+                    <li
+                        class="product type-product post-891379 status-publish first instock product_cat-perro product_tag-natural-earth-alimento-de-perro has-post-thumbnail featured purchasable product-type-simple">
+                        <a href="#" class="woocommerce-LoopProduct-link woocommerce-loop-product__link">
+                            <img width="300" height="300" src="./img/NATURAL-EARTH-DOG-3KG-500x500.jpg" 
+                                class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt=""
+                                decoding="async" loading="lazy" sizes="(max-width: 500px) 100vw, 500px" /> <!-- muchas imagenes las busqué por la waybackmachine, después me di cuenta de que podía sacarlas de la página original porque aún tienen la mayor parte de productos... cosas que pasan
+                                Otro detalle es que ajusté el alto y ancho de todas las imagenes para que se viera todo más ordenado, porque antes tenían distinto tamaño, lo cual difería del mockup-->
+                            <h2 class="woocommerce-loop-product__title">
+                                BIRBO EL PERRO SIN CARNE 3 KG
+                            </h2>
+                            <span class="price">
+                                <span class="woocommerce-Price-amount amount"> <!-- aquí hay fuentes de woocomerce-->
+                                    <bdi><span class="woocommerce-Price-currencySymbol">$</span>1.921</bdi> <!-- así como simbolos woocomerce-->
+                                </span>
+                            </span>
+                            <div class="stock">666 en stock</div>
+                        </a>
+                        <a href="#" data-quantity="1"
+                            class="button product_type_simple add_to_cart_button ajax_add_to_cart"
+                            data-product_id="891379" data-product_sku="APF0203"
+                            aria-label="Add to cart: “NATURAL EARTH DOG ADULTO 3 KG”" aria-describedby=""
+                            rel="nofollow">
+                            Añadir al carrito
+                        </a>
+                        <span class="gtm4wp_productdata" style="display: none; visibility: hidden;"
+                            data-gtm4wp_product_data='{"internal_id":891379,"item_id":891379,"item_name":"NATURAL EARTH DOG ADULTO 3 KG","sku":"APF0203","price":17900,"stocklevel":63,"stockstatus":"instock","google_business_vertical":"retail","item_category":"Todo para su perro","id":891379,"item_brand":"Todo para su perro","productlink":"https:\/\/www.fullerton.cl\/producto\/natural-earth-dog-adulto-3-kg\/","item_list_name":"Shortcode - Featured Products","index":1,"product_type":"simple"}'></span><!--  este es uno de los varios fragmentos de código que me hae pensar que el código original fue hecho en wordpress, investigué lo que significaba gtm4wp y me salía que era una cosa de etiquetas de google para wordpress-->
+                        <span class="pys_list_name_productdata" style="display: none; visibility: hidden;"
+                            data-pys_list_name_productlist_name="" data-pys_list_name_productlist_id=""></span><!--¿como que no se muestra?¿como que está oculto y maneja mis datos?-->
+                    </li>
+                    <li
+                        class="product type-product post-15522 status-publish instock product_cat-perro product_tag-alimento-de-perro product_tag-grain-free-perro product_tag-natural-earth has-post-thumbnail featured purchasable product-type-simple">
+                        <a href="#" class="woocommerce-LoopProduct-link woocommerce-loop-product__link">
+                            <img width="300" height="300"
+                                src="./img/WhatsApp-Image-2024-03-04-at-17.53.21-1.jpeg" 
+                                class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt=""
+                                decoding="async" loading="lazy" /><!--dato curioso, la dispocición también viene de woocomerce, pero un dato más curioso que el nombre original de la imagen sea el de un archivo de whatsapp-->
+                            <h2 class="woocommerce-loop-product__title">
+                                BIRBO EL GATO CASTRADO 15 KG <!--tenía que hacer el chiste, perdón-->
+                            </h2>
+                            <span class="price">
+                                <span class="woocommerce-Price-amount amount">
+                                    <bdi><span class="woocommerce-Price-currencySymbol">$</span>99.990</bdi>
+                                </span>
+                            </span>
+                            <div class="stock">00 en stock</div>
+                        </a>
+                        <a href="#" data-quantity="1"
+                            class="button product_type_simple add_to_cart_button ajax_add_to_cart"
+                            data-product_id="15522" data-product_sku="APF0202"
+                            aria-label="Add to cart: “NATURAL EARTH DOG ADULTO 15 KG”" aria-describedby=""
+                            rel="nofollow">
+                            Añadir al carrito
+                        </a>
+                        <span class="gtm4wp_productdata" style="display: none; visibility: hidden;"
+                            data-gtm4wp_product_data='{"internal_id":15522,"item_id":15522,"item_name":"NATURAL EARTH DOG ADULTO 15 KG","sku":"APF0202","price":59900,"stocklevel":40,"stockstatus":"instock","google_business_vertical":"retail","item_category":"Todo para su perro","id":15522,"item_brand":"Todo para su perro","productlink":"https:\/\/www.fullerton.cl\/producto\/natural-earth-dog-adulto-15-kg\/","item_list_name":"Shortcode - Featured Products","index":2,"product_type":"simple"}'></span>
+                        <span class="pys_list_name_productdata" style="display: none; visibility: hidden;"
+                            data-pys_list_name_productlist_name="" data-pys_list_name_productlist_id=""></span>
+                    </li>
+                    <li
+                        class="product type-product post-31293 status-publish instock product_cat-cuidado-y-salud has-post-thumbnail featured shipping-taxable purchasable product-type-simple">
+                        <a href="#" class="woocommerce-LoopProduct-link woocommerce-loop-product__link">
+                            <img width="300" height="300" src="./img/SHF0007-500x500.png"
+                                class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt=""
+                                decoding="async" loading="lazy" sizes="(max-width: 500px) 100vw, 500px" />
+                            <h2 class="woocommerce-loop-product__title">
+                                ARENA PARA PERRO 4,6 KG
+                            </h2>
+                            <span class="price">
+                                <span class="woocommerce-Price-amount amount">
+                                    <bdi><span class="woocommerce-Price-currencySymbol">$</span>9.990</bdi>
+                                </span>
+                            </span>
+                            <div class="stock">7 en stock</div>
+                        </a>
+                        <a href="#" data-quantity="1"
+                            class="button product_type_simple add_to_cart_button ajax_add_to_cart"
+                            data-product_id="31293" data-product_sku="SHF0007"
+                            aria-label="Add to cart: “ARENA NATURAL EARTH ECOLOGICA 4,6 KG”" aria-describedby=""
+                            rel="nofollow">
+                            Añadir al carrito
+                        </a>
+                        <span class="gtm4wp_productdata" style="display: none; visibility: hidden;"
+                            data-gtm4wp_product_data='{"internal_id":31293,"item_id":31293,"item_name":"ARENA NATURAL EARTH ECOLOGICA 4,6 KG","sku":"SHF0007","price":7900,"stocklevel":20,"stockstatus":"instock","google_business_vertical":"retail","item_category":"Cuidado y Salud","id":31293,"item_brand":"Cuidado y Salud","productlink":"https:\/\/www.fullerton.cl\/producto\/arena-natural-earth-ecologica-46-kg\/","item_list_name":"Shortcode - Featured Products","index":3,"product_type":"simple"}'></span>
+                        <span class="pys_list_name_productdata" style="display: none; visibility: hidden;"
+                            data-pys_list_name_productlist_name="" data-pys_list_name_productlist_id=""></span>
+                    </li>
+                    <li
+                        class="product type-product post-575368 status-publish last instock product_cat-accesorios product_tag-promociones has-post-thumbnail featured shipping-taxable purchasable product-type-simple"><!-- hasta las cosas que no son de animales tienen una etiqueta que dice cat-->
+                        <a href="#" class="woocommerce-LoopProduct-link woocommerce-loop-product__link">
+                            <img width="300" height="300" src="./img/CAF0006-500x500.png"
+                                class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt=""
+                                decoding="async" loading="lazy" sizes="(max-width: 500px) 100vw, 500px" />
+                            <h2 class="woocommerce-loop-product__title">
+                                COMIDA PARA PAN SABOR MANZANA
+                            </h2>
+                            <span class="price">
+                                <span class="woocommerce-Price-amount amount">
+                                    <bdi><span class="woocommerce-Price-currencySymbol">$</span>27.900</bdi>
+                                </span>
+                            </span>
+                            <div class="stock">8 en stock</div>
+                        </a>
+                        <a href="#" data-quantity="1"
+                            class="button product_type_simple add_to_cart_button ajax_add_to_cart"
+                            data-product_id="575368" data-product_sku="CAF0006"
+                            aria-label="Add to cart: “BAÑO PARA GATO BALLENA AZUL AZULSKY”" aria-describedby=""
+                            rel="nofollow"> <!-- ANTES HABÍA UNA FOTO DE UNA BALLEBAÑERA, la bañera de la ballena azul, la bañera mortal, para gatos-->
+                            Añadir al carrito
+                        </a>
+                        <span class="gtm4wp_productdata" style="display: none; visibility: hidden;"
+                            data-gtm4wp_product_data='{"internal_id":575368,"item_id":575368,"item_name":"BA\u00d1O PARA GATO BALLENA AZUL AZULSKY","sku":"CAF0006","price":27900,"stocklevel":4,"stockstatus":"instock","google_business_vertical":"retail","item_category":"Accesorios","id":575368,"item_brand":"Accesorios","productlink":"https:\/\/www.fullerton.cl\/producto\/bano-para-gato-ballena-azul-azulsky\/","item_list_name":"Shortcode - Featured Products","index":4,"product_type":"simple"}'></span>
+                        <span class="pys_list_name_productdata" style="display: none; visibility: hidden;"
+                            data-pys_list_name_productlist_name="" data-pys_list_name_productlist_id=""></span>
+                    </li>
+                </ul>
+            </div>
+            <div class="text-center">
+                <a href="#" class="btn btn-black">Ver todos</a>
+            </div>
+        </div>
+
+        <section id="nm" class="col-12 wrap justify-content-center text-center ptb">
+            <h2 class="title col-12">Nuestras Mascotas</h2>
+            <p class="subtitle col-12"></p>
+            <p style="text-align: center;">
+                <strong>¡ENCUENTRA TU PRODUCTO FAVORITO!</strong>
+            </p>
+            <p></p>
+            <a href="#" class="nm-circle">
+                <img src="./img/perro-icon.png" />
+                <h3>Perros</h3>
+            </a>
+            <a href="#" class="nm-circle">
+                <img src="./img/gato-icon.png" />
+                <h3>Gatos</h3>
+            </a>
+            <a href="#" class="nm-circle">
+                <img src="./img/conejo-icon.png" />
+                <h3>Otras Mascotas</h3>
+            </a>
+        </section>
+
+        <section id="premium" class="col-12 d-flex p-0">
+            <div class="col-3 premium-card">
+                <img src="./resources/grain-free.svg" />
+                <h3 class="text-uppercase">Grain free</h3>
+                <p></p>
+                <a href="#" class="btn btn-inline-black">Perros</a>
+                <a href="#" class="btn btn-inline-white">Gatos</a>
+            </div>
+            <div class="col-3 premium-card">
+                <img src="./resources/super-premium.svg" />
+                <h3 class="text-uppercase">Super premium</h3>
+                <p></p>
+                <a href="#" class="btn btn-inline-black">Perros</a>
+                <a href="#" class="btn btn-inline-white">Gatos</a>
+            </div>
+            <div class="col-3 premium-card">
+                <img src="./resources/high-premium.svg" />
+                <h3 class="text-uppercase">High premium</h3>
+                <p></p>
+                <a href="#" class="btn btn-inline-black">Perros</a>
+                <a href="#" class="btn btn-inline-white">Gatos</a>
+            </div>
+            <div class="col-3 premium-card">
+                <img src="./resources/premium.svg" />
+                <h3 class="text-uppercase">Premium</h3>
+                <p></p>
+                <a href="#" class="btn btn-inline-black">Perros</a>
+                <a href="#" class="btn btn-inline-white">Gatos</a>
+            </div>
+        </section>
+
+        <section id="marcas" class="col-12 wrap ptb">
+            <div class="nuestras-marcas-front">
+                <div class="col-8">
+                    <h2>Nuestras marcas</h2>
+                    <p></p> <!--se usan parrafos vacíos para marcar espacios, interesante-->
+                    <p class="Cuerpo">
+                        <span lang="ES-TRAD">Amamos a los animales y queremos entregar lo mejor para ellos. </span>
+                    </p>
+                    <p class="Cuerpo">
+                        <span lang="ES-TRAD">
+                            Hemos seleccionado cuidadosamente las marcas con las que trabajamos para entregar productos
+                            de la mejor calidad y accesibles a todos los bolsillos. Los invitamos a descubrir el mundo
+                            de Fullerton, seguirnos
+                            en redes sociales y conocer los beneficios de todos nuestros alimentos.
+                        </span>
+                    </p>
+                    <p></p>
+                    <a href="#" class="btn btn-primary">Ver marcas</a>
+                </div>
+                <div class="col-4"> <!--estoy seguro que esto del col-N es una forma de usar boostrap5, pero no está enlazado-->
+                    <div class="pwb-all-brands">
+                        <div class="pwb-brands-cols-outer"><!--tuve que eliminar bastantes marcas, lo que significa que obtuvieron más tratos, me alegra que le fuera bien al negocio-->
+                            <div class="pwb-brands-col3">
+                                <div>
+                                    <a href="#" title="Birbo">
+                                        <img width="109" height="36" src="./img/birbo.png"
+                                            class="attachment-thumbnail size-thumbnail" alt="" loading="lazy" />
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="pwb-brands-col3">
+                                <div>
+                                    <a href="#" title="Champion Dog">
+                                        <img width="128" height="66" src="./img/champion-dog-150x77.png"
+                                            class="attachment-thumbnail size-thumbnail" alt="" loading="lazy" />
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="pwb-brands-col3">
+                                <div>
+                                    <a href="#" title="Evolve">
+                                        <img width="128" height="66" src="./img/evolve-150x77.png"
+                                            class="attachment-thumbnail size-thumbnail" alt="" loading="lazy" />
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="pwb-brands-col3">
+                                <div>
+                                    <a href="#" title="Master Dog">
+                                        <img width="118" height="72" src="./img/master-dog.png"
+                                            class="attachment-thumbnail size-thumbnail" alt="" loading="lazy" />
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="pwb-brands-col3">
+                                <div>
+                                    <a href="#" title="Monello Select">
+                                        <img width="128" height="54" src="./img/monello-150x63.png"
+                                            class="attachment-thumbnail size-thumbnail" alt="" loading="lazy" />
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="pwb-brands-col3">
+                                <div>
+                                    <a href="#" title="Natural Earth">
+                                        <img width="128" height="83" src="./img/natural-earth-150x97.png"
+                                            class="attachment-thumbnail size-thumbnail" alt="" loading="lazy" />
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pwb-pagination-wrapper"></div>
+                    </div>
+                </div>
+            </div>
+            <img class="marcas-gato" src="./img/gatito.png" /><!--la imagen se llamaba gatito, me pareció muy tierno-->
+        </section>
+
+        <section id="car-marcas" class="col-12 wrap text-center ptb"> <!--mi sección favorita, es puro texto, me encanta-->
+            <h2 class="title col-12">
+                Características de<br />
+                Nuestras Marcas
+            </h2>
+            <p class="col-12"></p>
+            <p>
+                Nuestros 50 años de experiencia y continuidad en el mercado como amantes N° 1 de las mascotas nos
+                permiten ofrecer marcas que brindan a tu mascota crecimiento saludable, piel sana, pelaje brillante,
+                reducción del volumen
+                de las heces, alta absorción de proteinas, tracto urinario saludable, cuidado del corazón y visión;
+                ofreciendo productos con bajo contenido de sodio, sin colorantes ni saborizantes artificiales, que
+                aportan vitaminas y
+                minerales con una dieta equilibrada y balanceada para brindar una mejor calidad de vida a tu mascota.
+            </p>
+            <p></p>
+        </section>
+
+        <div class="col-12 car-videos-wrap wrap">
+            <div class="col-6 car-video">
+                <a href="https://www.youtube.com/shorts/nIDmo2uCeNA">
+                    <img src="./img/FCE197-1.png" id="ima1" />
+                </a>
+            </div>
+            <div class="col-6 car-video">
+                <a href="https://www.youtube.com/watch?v=D-UmfqFjpl0">
+                    <img src="./img/FCE197.png" id="ima1" />
+                </a>
+            </div>
+        </div>
+
+        <!-- Aquí debía estar el feed de instagram, pero ni en la página actual aparece, no sé que pasó, es un misterio-->
+
+        <section id="cta" class="col-12 d-flex align-items-center">
+            <div class="col-6 cta-l">
+                <h2>
+                    ¡Llámanos!
+                    <a href="https://www.youtube.com/watch?v=2QESXZYvPqg"><i class="fas fa-phone"></i> +56 9 9999 9990</a> <!-- sin comentarios-->
+                </h2>
+            </div>
+            <div class="col-6 cta-r">
+                <b>
+                    Horarios<br />
+                    Call Center:
+                </b>
+                <span>
+                    Lunes a viernes de 8:00 a 19:30 hrs.<br />
+                    Sábados de 8:00 a 13:00 hrs.
+                </span>
+            </div>
+        </section>
+
+        <section id="blog" class="col-12 wrap ptb" style="background-color: #f2f2f2;"><!-- dentro de todo, una sección sencilla-->
+            <div class="col-12 text-center">
+                <h2 class="title col-12">Mi Mascota</h2>
+                <p>
+                    ¡Descubre cómo cuidar la alimentación y bienestar de tu mascota!
+                </p>
+            </div>
+            <div class="col-12 d-flex posts">
+                <div class="card-post">
+                    <div class="card-post-img" style="background-image: url(./img/alimentarmascotas.png);"> <!-- así es, aquí también tuve que reemplazar las url-->
+                    </div>
+                    <div class="card-post-content">
+                        <h2>
+                            <a href="#">¿Cómo alimentar correctamente a las mascotas?</a>
+                        </h2>
+                        <p>
+                            Proporcionar una dieta con nutrientes esenciales durante cada ciclo de vida de una mascota
+                            puede garantizar la salud y el […]
+                        </p>
+                        <a class="btn-blog" href="#">Leer más</a>
+                    </div>
+                </div>
+                <div class="card-post">
+                    <div class="card-post-img" style="background-image: url(./img/perro3.png);"></div>
+                    <div class="card-post-content">
+                        <h2>
+                            <a href="#">¿Cómo cambiar su alimento?</a>
+                        </h2>
+                        <p>
+                            Si vas a cambiar a alguna nueva marca, realiza el cambio en lapso de 7 a 10 días, mezclando
+                            de […]
+                        </p>
+                        <a class="btn-blog" href="#">Leer más</a>
+                    </div>
+                </div>
+                <div class="card-post">
+                    <div class="card-post-img"
+                        style="background-image: url(./img/adoptarmascotas.png);">
+                    </div>
+                    <div class="card-post-content">
+                        <h2>
+                            <a href="#">¿Adoptar a una mascota las hará feliz de nuevo?</a>
+                        </h2>
+                        <p>
+                            ¿Te animarías a adoptar un perro o un gato?, es importante concienciar y animar a la gente a
+                            dar una […]
+                        </p>
+                        <a class="btn-blog" href="#">Leer más</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+<!-- Esta sección fue la que me derrotó, se supone que es un carrusel, pero a la vez no se mueve, y tiene las imagenes y los datos repetidos como 3 veces, solo que la mayoría no se ven porque son trasparentes, por alguna razón que tampoco logro comprender.
+no entiendo nada, busqué por todas partes como hacerlo funcionar
+este pedazo de código acabó con mi cordura-->
+        <section 
+        id="refugios" 
+        class="col-12 wrap ptb text-center" 
+        style=" 
+        font-family: Stolzl;
+        color: #000;
+        padding-top: 50px;
+        padding-bottom: 50px;
+        float: left;
+        box-sizing: border-box;
+        padding-right: 15px;
+        padding-left: 15px;
+        width: 100%;
+        text-align: center;">
+            <div class="col-12">
+                <h2 class="title col-12">Refugios Amigos</h2>
+                <p>Nuestro amor por los animales va más allá de solo unas palabras, contamos con alianzas con diversas
+                    organizaciones de ayuda a los animales e instamos aportar con nuestro granito de arena para poder
+                    mejorar la vida de cientos de mascotas.</p>
+            </div>
+            <div class="col-12">
+                <div class="tns-outer" id="tns1-ow">
+                    <div class="tns-controls" aria-label="Carousel Navigation" tabindex="0" style="display: none;">
+                        <button type="button" data-controls="prev" tabindex="-1" aria-controls="tns1">
+                            <i class="fas fa-chevron-circle-left"></i>
+                        </button>
+                        <button type="button" data-controls="next" tabindex="-1" aria-controls="tns1">
+                            <i class="fas fa-chevron-circle-right"></i>
+                        </button>
+                    </div>
+
+                    <div class="tns-liveregion tns-visually-hidden" aria-live="polite" aria-atomic="true">
+                        slide <span class="current">5 to 7</span> of 3
+                    </div>
+                    <div 
+                        class="refugios-carousel col-12  tns-slider tns-carousel tns-subpixel tns-calc tns-horizontal"
+                        id="tns1" 
+                        style="transition-duration: 0s; transform: translate3d(-36.3636%, 0px, 0px);">
+
+                        <!--
+                        <a
+                            class="refugios-slide tns-item tns-transparent"
+                            href="#" 
+                            aria-hidden="true" 
+                            tabindex="-1">
+                            <img src="./img/sos.jpg">
+                            <br>Es una una organización sin fines de lucro ubicada en Villa Alemana, dedicada al rescate y recuperación
+                            de los animales en situación de calle
+                        </a>
+                        <a 
+                            class="refugios-slide tns-item tns-transparent"
+                            href="" 
+                            aria-hidden="true" 
+                            tabindex="-1">
+                            <img src="./img/dhermes.jpg">
+                            <br>Es una organización comunitaria de animales, sin fines de lucro que opera en la ciudad de Viña del Mar. Nuestra misión es educar a la ciudadanía en castrar y esterilizar a sus mascotas y no abandonarlas. Necesitamos de su apoyo, para seguir adelante en esta noble causa.
+
+                        </a>
+                        <a
+                            class="refugios-slide tns-item tns-transparent" 
+                            href="#" 
+                            aria-hidden="true"
+                            tabindex="-1">
+                            <img src="./img/oppa.jpg">
+                            <br>Es una organización para La Protección Animal (OPPA), sin fines de lucro, fundada en la ciudad de Viña del Mar, Chile, en Octubre de 1994, con el propósito de proteger a los animales y defenderlos de abusos y maltrato; entregándoles refugio, alimentación y medicamentos hastaque alguna persona que desee cuidarlos y darles un hogar, los adopte.
+                        </a>
+                        <a
+                            class="refugios-slide tns-item tns-transparent"
+                            href="#" 
+                            aria-hidden="true" 
+                            tabindex="-1">
+                            <img src="./img/sos.jpg">
+                            <br>Es una una organización sin fines de lucro ubicada en Villa Alemana, dedicada al rescate y recuperación de los animales en situación de calle
+                        </a> 
+                        -->
+
+                        <a 
+                            class="refugios-slide tns-item tns-slide-active" 
+                            href="#"
+                            id="tns1-item0"
+                            style="
+                            font-family: Stolzl;
+                            text-align: center;
+                            text-decoration: none;
+                            color: #000;
+                            box-sizing: border-box;
+                            display: inline-block;
+                            vertical-align: top;
+                            white-space: normal;
+                            font-size: 16px;
+                            width: calc(9.09091%);
+                            padding-right: 40px;">
+                            <img 
+                                src="./img/dhermes.jpg" 
+                                style="
+                                font-family: Stolzl;
+                                text-align: center;
+                                color: #000;
+                                white-space: normal;
+                                font-size: 16px;
+                                box-sizing: border-box;
+                                width: 100%;
+                                display: block;">
+                            <br>Es una organización comunitaria de animales, sin fines de lucro que opera en la ciudad de Viña del Mar. Nuestra misión es educar a la ciudadanía en castrar y esterilizar a sus mascotas y no abandonarlas. Necesitamos de su apoyo, para seguir adelante en esta noble causa.
+                        </a>
+                        <a 
+                            class="refugios-slide tns-item tns-slide-active" 
+                            href="#"
+                            id="tns1-item1">
+                            <img src="./img/oppa.jpg" style="height: 248.14; width: 532.5;">
+                            <br>Es una organización para La Protección Animal (OPPA), sin fines de lucro, fundada en la ciudad de Viña del Mar, Chile, en Octubre de 1994, con el propósito de proteger a los animales ydefenderlos de abusos y maltrato; entregándoles refugio, alimentación y medicamentos hasta que alguna persona que desee cuidarlos y darles un hogar, los adopte.
+                        </a>
+                        <a 
+                            class="refugios-slide tns-item tns-slide-active"
+                            href="#" 
+                            id="tns1-item2">
+                            <img src="./img/sos.jpg"style="height: 248.14; width: 532.5;">
+                            <br>Es una una organización sin fines de lucro ubicada en Villa Alemana, dedicada al rescate y recuperación de los animales en situación de calle
+                        </a>
+
+                        <!--
+                        <a 
+                            class="refugios-slide tns-item tns-transparent" 
+                            href="#" 
+                            aria-hidden="true"
+                            tabindex="-1">
+                            <img src="./img/dhermes.jpg">
+                            <br>Es una
+                            organización comunitaria de animales, sin fines de lucro que opera en la ciudad de Viña del
+                            Mar. Nuestra misión es educar a la ciudadanía en castrar y esterilizar a sus mascotas y no
+                            abandonarlas. Necesitamos de su apoyo, para seguir adelante en esta noble causa.
+                        </a>
+                        <a
+                            class="refugios-slide tns-item tns-transparent"
+                            href="#"
+                            aria-hidden="true"
+                            tabindex="-1">
+                            <img src="./img/oppa.jpg">
+                            <br>Es una organización para La Protección Animal (OPPA), sin fines de lucro, fundada en la ciudad de Viña del Mar, Chile, en Octubre de 1994, con el propósito de proteger a los animales y defenderlos de abusos y maltrato; entregándoles refugio, alimentación y medicamentos hasta que alguna persona que desee cuidarlos y darles un hogar, los adopte.
+                        </a>
+                        <a
+                            class="refugios-slide tns-item tns-transparent"
+                            href="#" 
+                            aria-hidden="true" 
+                            tabindex="-1">
+                            <img src="./img/sos.jpg">
+                            <br>Es una una organización sin fines de lucro ubicada en Villa Alemana, dedicada al rescate y recuperación de los animales en situación de calle
+                        </a>
+                        <a class="refugios-slide tns-item tns-transparent"
+                            href="#" aria-hidden="true" tabindex="-1"><img
+                                src="./img/dhermes.jpg"><br>Es una organización comunitaria de animales, sin fines de lucro que opera en la ciudad de Viña del Mar. Nuestra misión es educar a la ciudadanía en castrar y esterilizar a sus mascotas y no abandonarlas. Necesitamos de su apoyo, para seguir adelante en esta noble causa.</a>
+                    </div>
+                    -->
+
+                    <!--
+                    <div id="tns1-mw" class="tns-ovh">
+                        <div class="tns-inner" id="tns1-iw">
+                            <div class="refugios-carousel col-12  tns-slider tns-carousel tns-subpixel tns-calc tns-horizontal"
+                                id="tns1" style="transition-duration: 0s; transform: translate3d(-36.3636%, 0px, 0px);">
+                                <a class="refugios-slide tns-item tns-active" href="#" tabindex="-1">
+                                    <img src="./img/sos.jpg" style="height: 248.14; width: 532.5;">
+                                    <br>Es una una organización sin fines de lucro ubicada en Villa Alemana, dedicada al
+                                    rescate y recuperación de los animales en situación de calle
+                                </a>
+                                <a class="refugios-slide tns-item tns-active" href="#" tabindex="-1">
+                                    <img src="./img/dhermes.jpg" style="height: 248.14; width: 532.5;">
+                                    <br>Es una organización comunitaria de animales, sin fines de lucro que opera en la
+                                    ciudad de Viña del Mar. Nuestra misión es educar a la ciudadanía en castrar y
+                                    esterilizar a sus mascotas y no abandonarlas. Necesitamos de su apoyo, para seguir
+                                    adelante en esta noble causa.
+                                </a>
+                                <a class="refugios-slide tns-item tns-active" href="#" tabindex="-1">
+                                    <img src="./img/oppa.jpg" style="height: 248.14; width: 532.5;">
+                                    <br>Es una organización para La Protección Animal (OPPA), sin fines de lucro,
+                                    fundada en la ciudad de Viña del Mar, Chile, en Octubre de 1994, con el propósito de
+                                    proteger a los animales y defenderlos de abusos y maltrato; entregándoles refugio,
+                                    alimentación y medicamentos hasta que alguna persona que desee cuidarlos y darles un
+                                    hogar, los adopte.
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                -->
+                </div>
+        </section>
+        <!-- otras cosas raras de carrusel, no nisiquiera se ven los iconos que se mencionan, no lo entiendo-->
+        <script type="module">
+            var slider = tns({
+                container: ".refugios-carousel",
+                gutter: 15,
+                items: 2,
+                nav: false,
+                controlsText: ['<i class="fas fa-chevron-circle-left"></i>', '<i class="fas fa-chevron-circle-right"></i>'],
+                responsive: {
+                    540: {
+                        items: 2,
+                        gutter: 15,
+                    },
+                    700: {
+                        items: 3,
+                        gutter: 40,
+                    },
+                    960: {
+                        items: 3,
+                    },
+                },
+            });
+        </script>
+
+        <section id="visitaNuestrasTiendas" class="col-12 d-flex p-0"> <!--otra sección sin drama, bastante sencilla-->
+            <div class="col-5 img" style="background-image: url(./img/perro-correa.png);"></div>
+            <div class="col-7 wrap">
+                <h2 class="title col-12">Visita Nuestras Tiendas</h2>
+                <p></p>
+                <p>
+                    FULLERTON, es una empresa de origen familiar con presencia en la V Región y la Región Metropolitana.
+                    Nos destacamos por tener en las 12 sucursales un equipo de personas altamente calificadas para
+                    brindar un excelente
+                    servicio, dando asesoría en base a las marcas que ofrecemos a nuestros clientes y por sobre todo en
+                    nuestras salas de ventas encontrarás todo lo que necesitas saber sobre la alimentación, cuidado de
+                    tus mascotas ¡y
+                    mucho más!.<br />
+                    Hace tiempo que decidimos comenzar a importar y distribuir marcas exclusivas de comida seca, húmeda,
+                    snacks, arenas y mucho más, siempre con la mejor calidad que únicamente podrás encontrarlas en
+                    nuestra tienda
+                    online o sucursales. ¡Visítenos!
+                </p>
+                <p></p>
+                <a href="#" class="btn btn-black">Conocer tiendas</a>
+            </div>
+        </section>
+    </main>
+    <footer class="col-12 wrap ptb d-flex">
+        <div class="col-4 footer-nav">
+            <div class="menu-footer-container">
+                <ul id="menu-footer" class="menu">
+                    <li id="menu-item-73741"
+                        class="menu-item menu-item-type-post_type menu-item-object-page menu-item-73741">
+                        <a href="#">Blog Fullerton</a>
+                    </li>
+                    <li id="menu-item-577194"
+                        class="menu-item menu-item-type-post_type menu-item-object-page menu-item-577194">
+                        <a href="#">Tiendas</a>
+                    </li>
+                    <li id="menu-item-71484"
+                        class="menu-item menu-item-type-post_type menu-item-object-page menu-item-71484">
+                        <a href="#">Contacto</a>
+                    </li>
+                    <li id="menu-item-71485"
+                        class="menu-item menu-item-type-post_type menu-item-object-page menu-item-71485">
+                        <a href="#">Preguntas frecuentes</a>
+                    </li>
+                    <li id="menu-item-71486"
+                        class="menu-item menu-item-type-post_type menu-item-object-page menu-item-71486">
+                        <a href="#">Politicas de compra y devoluciones</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-4 mailing text-center">
+            <h3 class="col-12 title">¡Suscríbete!</h3>
+            <div class="wpcf7 js" id="wpcf7-f565144-o1" lang="es-CL" dir="ltr">
+                <div class="screen-reader-response">
+                    <p role="status" aria-live="polite" aria-atomic="true"></p>
+                    <ul></ul>
+                </div>
+                <form action="https://www.fullerton.cl/#wpcf7-f565144-o1" method="post" class="wpcf7-form init"
+                    aria-label="Contact form" novalidate="novalidate" data-status="init">
+                    <div class="mc4wp-form-fields">
+                        <input class="input-mailing" type="email" name="EMAIL"
+                            placeholder="*Ingresa tu correo electrónico" required="">
+                        <input class="btn-mailing" type="submit" value="ENVIAR">
+                    </div>
+                    <input type="hidden" class="wpcf7-pum"
+                        value='{"closepopup":false,"closedelay":0,"openpopup":false,"openpopup_id":0}' />
+                    <div class="wpcf7-response-output" aria-hidden="true"></div>
+                </form>
+            </div>
+        </div>
+        <div class="col-4 social-media">
+            <img src="./img/cropped-cropped-logo-fullerton-300x78-b-1.jpg" />
+            <div class="col-12">
+                <ul id="" class="cnss-social-icon" style="text-align: center;"></ul>
+            </div>
+            <div class="col-12">
+                <p>
+                    <a href="#"><i class="fas fa-envelope"></i> contacto@fullerton.cl</a>
+                </p>
+                <p>
+                    <strong>Call Center</strong>
+                </p>
+                <p>32 295 0475</p>
+                <p>
+                    <strong>Horarios Call Center</strong>
+                </p>
+                <p>
+                    Lunes a viernes de 8:00 a 18:30 hrs.<br />
+                    Sábados de 8:00 a 13:00 hrs.
+                </p>
+            </div>
+        </div>
+    </footer>
+    <div class="col-12 colophon wrap">
+        <span>© Fullerton 2022</span>
+        <span class="f-right"><img
+                src="https://web.archive.org/web/20220301234044im_/https://www.fullerton.cl/wp-content/uploads/2021/03/vitamina.svg">
+                <!--me parece curioso que se use un svg para algo tan pequeño, pero bueno, los vectores sirven para todo, supongo-->
+            Sitio desarrollado por <a target="_blank" href="#">La Vitamina</a></span>
+    </div>
+
+    <link rel="stylesheet" href="./resources/font_awesome/all.min.css" />
+
+    <script>
+        window.RS_MODULES = window.RS_MODULES || {};
+        window.RS_MODULES.modules = window.RS_MODULES.modules || {};
+        window.RS_MODULES.waiting = window.RS_MODULES.waiting || [];
+        window.RS_MODULES.defered = false;
+        window.RS_MODULES.moduleWaiting = window.RS_MODULES.moduleWaiting || {};
+        window.RS_MODULES.type = "compiled";
+    </script>
+
+
+    <!--a partir de aquí dejo de entender muchas cosas, solo sé que hay importaciones de javascript y que mas de alguno debe de ser innecesaro para la evaluación-->
+    <div id="pys_ajax_events"></div>
+    <script>
+        var node = document.getElementsByClassName("woocommerce-message")[0];
+        if (node && document.getElementById("pys_late_event")) {
+            var messageText = node.textContent.trim();
+            if (!messageText) {
+                node.style.display = "none";
+            }
+        }
+    </script>
+    <script type="text/javascript">
+        for (var textFields = document.querySelectorAll('input[type="email"]'), i = 0; i < textFields.length; i++) {
+            textFields[i].addEventListener("blur", function () {
+                const regexEmail = /^[#&*\/=?^{!}~'_a-z0-9-\+]+([#&*\/=?^{!}~'_a-z0-9-\+]+)*(\.[#&*\/=?^{!}~'_a-z0-9-\+]+)*[.]?@[_a-z0-9-]+(\.[_a-z0-9-]+)*(\.[a-z0-9]{2,63})$/i;
+                if (!regexEmail.test(textFields[i].value)) {
+                    return false;
+                }
+                if (getCookieValueByName("tracking_email") == encodeURIComponent(textFields[i].value)) {
+                    return false;
+                }
+                document.cookie = "tracking_email=" + encodeURIComponent(textFields[i].value) + "; path=/";
+                var xhrobj = new XMLHttpRequest();
+                xhrobj.open("POST", "/wp-admin/admin-ajax.php");
+                var params = "action=the_ajax_hook&tracking_email=" + encodeURIComponent(textFields[i].value);
+                xhrobj.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                xhrobj.send(params);
+            });
+            break;
+        }
+        function getCookieValueByName(name) {
+            var match = document.cookie.match(new RegExp("(^| )" + name + "=([^;]+)"));
+            return match ? match[2] : "";
+        }
+    </script>
+    <script>
+        const dfLayerOptions = {
+            installationId: "adccea6d-f88c-4233-829b-1ea54f6fe1d8",
+            zone: "us1",
+        };
+
+        (function (l, a, y, e, r, s) {
+            r = l.createElement(a);
+            r.onload = e;
+            r.async = 1;
+            r.src = y;
+            s = l.getElementsByTagName(a)[0];
+            s.parentNode.insertBefore(r, s);
+        })(document, "script", "https://cdn.doofinder.com/livelayer/1/js/loader.min.js", function () {
+            doofinderLoader.load(dfLayerOptions);
+        });
+    </script>
+    <script src="./resources/doofinderRecommendation.min.js.descargar"></script>
+    <noscript>
+        <img height="1" width="1" style="display: none;"
+            src="https://www.facebook.com/tr?id=2555497751382427&ev=PageView&noscript=1&eid=2555497751382427fb513937-a905-49a9-9e59-6d9ece4546e8&cd%5Bpage_title%5D=Inicio&cd%5Bpost_type%5D=page&cd%5Bpost_id%5D=9&cd%5Bplugin%5D=PixelYourSite&cd%5Bevent_url%5D=www.fullerton.cl%2F&cd%5Buser_role%5D=guest"
+            alt="" />
+    </noscript>
+    <link href="./css" rel="stylesheet" property="stylesheet" media="all" type="text/css" />
+
+    <script type="text/javascript">
+        (function () {
+            var c = document.body.className;
+            c = c.replace(/woocommerce-no-js/, "woocommerce-js");
+            document.body.className = c;
+        })();
+    </script>
+    <script>
+        if (typeof revslider_showDoubleJqueryError === "undefined") {
+            function revslider_showDoubleJqueryError(sliderID) {
+                console.log("You have some jquery.js library include that comes after the Slider Revolution files js inclusion.");
+                console.log("To fix this, you can:");
+                console.log("1. Set 'Module General Options' -> 'Advanced' -> 'jQuery & OutPut Filters' -> 'Put JS to Body' to on");
+                console.log("2. Find the double jQuery.js inclusion and remove it");
+                return "Double Included jQuery Library";
+            }
+        }
+    </script>
+    <link rel="preload" as="font" id="rs-icon-set-fa-icon-woff" type="font/woff2" crossorigin="anonymous" href=""
+        media="all" />
+    <link rel="stylesheet" property="stylesheet" id="rs-icon-set-fa-icon-css" href="./css/font-awesome.css"
+        type="text/css" media="all" />
+    <link rel="stylesheet" id="rs-plugin-settings-css" href="./css/rs6.css" type="text/css" media="all" />
+    <style id="rs-plugin-settings-inline-css" type="text/css">
+        #rev_slider_2_1_wrapper .hermes .tp-bullet {
+            overflow: hidden;
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            background-color: rgba(0, 0, 0, 0);
+            box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.6);
+            -webkit-transition: background 0.3s ease;
+            transition: background 0.3s ease;
+            position: absolute;
+        }
+
+        #rev_slider_2_1_wrapper .hermes .tp-bullet.rs-touchhover {
+            background-color: rgba(0, 0, 0, 0.21);
+        }
+
+        #rev_slider_2_1_wrapper .hermes .tp-bullet:after {
+            content: " ";
+            position: absolute;
+            bottom: 0;
+            height: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.6);
+            box-shadow: 0 0 1px rgba(255, 255, 255, 0.6);
+            -webkit-transition: height 0.3s ease;
+            transition: height 0.3s ease;
+        }
+
+        #rev_slider_2_1_wrapper .hermes .tp-bullet.selected:after {
+            height: 100%;
+        }
+    </style>
+    <iframe id="cm_iframe" height="0" width="0" src="./resources/cm.html"
+        style="display: none; visibility: hidden;"></iframe>
+    <iframe id="cm_iframe" height="0" width="0" src="./resources/cm(1).html"
+        style="display: none; visibility: hidden;"></iframe>
+    <script id="rs-initialisation-scripts">
+        var tpj = jQuery;
+
+        var revapi2;
+
+        if (window.RS_MODULES === undefined) window.RS_MODULES = {};
+        if (RS_MODULES.modules === undefined) RS_MODULES.modules = {};
+        RS_MODULES.modules["revslider21"] = {
+            once: RS_MODULES.modules["revslider21"] !== undefined ? RS_MODULES.modules["revslider21"].once : undefined, init: function () {
+                window.revapi2 = window.revapi2 === undefined || window.revapi2 === null || window.revapi2.length === 0 ? document.getElementById("rev_slider_2_1") : window.revapi2;
+                if (window.revapi2 === null || window.revapi2 === undefined || window.revapi2.length == 0) { window.revapi2initTry = window.revapi2initTry === undefined ? 0 : window.revapi2initTry + 1; if (window.revapi2initTry < 20) requestAnimationFrame(function () { RS_MODULES.modules["revslider21"].init() }); return; }
+                window.revapi2 = jQuery(window.revapi2);
+                if (window.revapi2.revolution == undefined) { revslider_showDoubleJqueryError("rev_slider_2_1"); return; }
+                revapi2.revolutionInit({
+                    revapi: "revapi2",
+                    DPR: "dpr",
+                    sliderLayout: "fullwidth",
+                    visibilityLevels: "1240,1240,1240,480",
+                    gridwidth: "1920,1920,1920,480",
+                    gridheight: "600,600,600,540",
+                    lazyType: "smart",
+                    perspective: 600,
+                    perspectiveType: "global",
+                    editorheight: "600,768,960,540",
+                    responsiveLevels: "1240,1240,1240,480",
+                    progressBar: { disableProgressBar: true },
+                    navigation: {
+                        wheelCallDelay: 1000,
+                        onHoverStop: false,
+                        bullets: {
+                            enable: true,
+                            tmp: "",
+                            style: "hermes",
+                            h_align: "right",
+                            v_align: "center",
+                            h_offset: 5,
+                            v_offset: 0,
+                            direction: "vertical",
+                            container: "layergrid"
+                        }
+                    },
+                    viewPort: {
+                        global: true,
+                        globalDist: "-200px",
+                        enable: false
+                    },
+                    fallbacks: {
+                        allowHTML5AutoPlayOnAndroid: true
+                    },
+                });
+
+            }
+        } // End of RevInitScript
+
+        if (window.RS_MODULES.checkMinimal !== undefined) { window.RS_MODULES.checkMinimal(); };
+    </script>
+    <script type="text/javascript" src="./resources/DOLOR.js"></script>
+</body>
+
+</html>
